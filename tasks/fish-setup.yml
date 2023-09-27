@@ -1,0 +1,14 @@
+- name: Install Fish
+  apt: name=fish
+  tags: &tags_for_fish_tasks [ 'install', 'productivity', 'dotfiles', 'fish' ]
+
+- name: Change shell to fish
+  shell: chsh -s $(which fish)
+  tags: *tags_for_fish_tasks
+
+
+- name: Install Starship
+  shell: curl -sS https://starship.rs/install.sh | sh -s -- -f
+  tags: *tags_for_fish_tasks
+
+

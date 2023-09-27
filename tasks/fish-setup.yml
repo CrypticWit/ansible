@@ -2,6 +2,11 @@
   apt: name=fish
   tags: &tags_for_fish_tasks [ 'install', 'productivity', 'dotfiles', 'fish' ]
 
+- name: Allow chsh without password
+  become: true
+  shell: sed s/required/sufficient/g -i /etc/pam.d/chsh
+  tags: *tags_for_fish_tasks
+
 - name: Change shell to fish
   shell: chsh -s $(which fish)
   tags: *tags_for_fish_tasks
